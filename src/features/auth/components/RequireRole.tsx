@@ -4,8 +4,8 @@ import type { Role } from '../types';
 
 export function RequireRole  ({roles}:{ roles: Role[] }){
     const {user}=useAuth()
-
-    if(!user || !roles.includes(user.role)) return <Navigate to="/" replace/>
+const location = useLocation()
+    if(!user || !roles.includes(user.role)) return <Navigate to="/" replace state={{ from: location.pathname }}/>
 
   return <Outlet/>
 }
