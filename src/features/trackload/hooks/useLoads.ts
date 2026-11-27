@@ -8,14 +8,14 @@ type Result = {
   error?: string
 }
 
-export function useLoads({ page, limit }: LoadsParams) {
-  const key = `${page}:${limit}`
+export function useLoads({ page, limit, search = '', status }: LoadsParams) {
+  const key = `${page}:${limit}:${search}:${status ?? 'all'}`
   const [result, setResult] = useState<Result>({ key: '' })
 
   useEffect(() => {
     let active = true
 
-    getLoads({ page, limit })
+    getLoads({ page, limit, search, status })
       .then((data) => {
         if (active) setResult({ key, data })
       })
@@ -27,11 +27,12 @@ export function useLoads({ page, limit }: LoadsParams) {
     return () => {
       active = false
     }
-  }, [key, page, limit])
+   }, [key, page, limit, search, status])
 
   return {
     loads: result.data?.items ?? [],
     total: result.data?.total ?? 0,
+    summary: result.data?.summary,
     loading: result.key !== key,
     error: result.error,
   }

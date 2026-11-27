@@ -20,7 +20,7 @@ export function LoadCard({ load }: LoadCardProps) {
   const { mic, company, origin, destination, location, status, crts, products } = load
 
   return (
-    <Card>
+    <Card className="transition-colors hover:border-blue-300">
       <CardHeader>
         <CardTitle className="text-lg font-bold">{mic}</CardTitle>
         <CardDescription>{company}</CardDescription>
@@ -49,8 +49,13 @@ export function LoadCard({ load }: LoadCardProps) {
 
         <ul className="flex gap-2">
           {crts.map((crt) => (
-            <li key={crt} className="flex-1 rounded-md border py-2 text-center text-sm text-muted-foreground transition-colors hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200 cursor-pointer ">
-              {crt}
+            <li key={crt} className="flex-1">
+              <Link
+                to={`/waybills/${crt}`}
+                className="block rounded-md border py-2 text-center text-sm text-muted-foreground transition-colors hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+              >
+                {crt}
+              </Link>
             </li>
           ))}
         </ul>

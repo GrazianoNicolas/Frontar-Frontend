@@ -1,32 +1,26 @@
-import { NavLink } from 'react-router'
-import { buttonVariants } from '@/components/ui/button'
-import { NAV_ITEMS } from './NavItem'
+import { Link } from 'react-router'
+import { Logo } from '@/components/Logo'
+import { MobileNav } from './MobileNav'
+import { NAV_ITEMS } from './NavItems'
+import { NavItemLink } from './NavItemLink'
 import { UserMenu } from './UserMenu'
-​import { useAuth } from '@/features/auth'
 
 export function Navbar() {
-  const { user } = useAuth()
-  const items = NAV_ITEMS.filter(
-    (item) => !item.roles || (user && item.roles.includes(user.role)),
-  )
   return (
-    <header className="border-b">
-      <nav className="mx-auto flex max-w-5xl items-center gap-1 px-4 py-2">
-        <span className="mr-4 font-semibold">Frontar</span>
-​
-        {items.map((item) => (
-          <NavLink
-            key={item.to}
-            to={item.to}
-            end={item.to === '/'}
-            className={({ isActive }) =>
-              buttonVariants({ variant: isActive ? 'outline' : 'ghost' })
-            }
-          >
-            {item.label}
-          </NavLink>
-        ))}
-​
+    <header className="bg-brand text-white">
+      <nav className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-4 lg:px-8">
+        <MobileNav />
+
+        <Link to="/" className="mr-4">
+          <Logo />
+        </Link>
+
+        <div className="hidden items-center gap-1 lg:flex">
+          {NAV_ITEMS.map((item) => (
+            <NavItemLink key={item.to} item={item} />
+          ))}
+        </div>
+
         <div className="ml-auto">
           <UserMenu />
         </div>

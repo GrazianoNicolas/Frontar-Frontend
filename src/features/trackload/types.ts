@@ -20,10 +20,21 @@ export type LoadsView='cards'|'rows';
 
 export type LoadsParams ={
     page:number,
-    limit:number
+    limit:number,
+    search?:string,
+    status?:LoadStatus,
+}
+export type LoadsSummary= Record<LoadStatus,number> &{
+    all:number,
+    waybills:number,
+    customs:number,
+    in_transit:number,
 }
 
 export type LoadsPage={
   items:Load[],
-  total:number
+  total:number,
+  summary:LoadsSummary
 }
+
+export type StatusFilter=LoadStatus|'all'

@@ -26,7 +26,7 @@ export function LoadsPagination({ page, totalPages, onChange }: LoadsPaginationP
       if (destination >= 1 && destination <= totalPages) onChange(destination)
     }
   }
-  
+
   return (
     <Pagination>
       <PaginationContent>

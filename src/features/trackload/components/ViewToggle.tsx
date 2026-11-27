@@ -1,6 +1,6 @@
-import { LayoutGrid, List } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import type { LoadsView } from '../types';
+import { LayoutGrid, List } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import type { LoadsView } from '../types'
 
 const OPTIONS = [
   { value: 'cards', label: 'Tarjetas', Icon: LayoutGrid },
@@ -8,7 +8,7 @@ const OPTIONS = [
 ] as const
 
 type ViewToggleProps = {
-  view: LoadsView,
+  view: LoadsView
   onChange: (view: LoadsView) => void
 }
 
